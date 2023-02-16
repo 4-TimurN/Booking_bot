@@ -1,6 +1,9 @@
 import sqlite3 as sql
-# import pyodbc
 import mysql.connector
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read("config.ini")
 
 
 def replace_symbol(query):
@@ -28,7 +31,7 @@ def start_sql():
     con_type = 2  # 0 - SQLlite; 1 - MSSQL; 2 - MySql
     match con_type:
         case 0:
-            base = sql.connect("****")
+            base = sql.connect(config["sql_lite"]["sql_lite_db_name"])
             cur = base.cursor()
 
             if base:
@@ -46,7 +49,9 @@ def start_sql():
 
         # case 1:
 
-            # base = pyodbc.connect(r'*********************************')
+            # base = pyodbc.connect(r'Driver={SQL Server}; '
+            #                       r'Server=config["ms_sql"]["ms_sql_server"];'
+            #                       r'Database=config["ms_sql"]["ms_sql_database"];Trusted_Connection=yes;')
             # cur = base.cursor()
             #
             # if base:
@@ -66,17 +71,19 @@ def start_sql():
             host = "+"  # "-" - localhost; "+" - Heroku host
             match host:
                 case "+":
-                    base = mysql.connector.connect(user='*********', password='***********',
-                                                   host='***********************',
-                                                   database='*****************')
+                    base = mysql.connector.connect(user=config["my_sql"]["mysql_user"],
+                                                   password=config["my_sql"]["mysql_password"],
+                                                   host=config["my_sql"]["mysql_host"],
+                                                   database=config["my_sql"]["mysql_database_heroku"])
                     cur = base.cursor()
                     if base:
                         print("MySql Heroku host db connection established")
 
                 case "-":
-                    base = mysql.connector.connect(user='root', password='*****',
-                                                  host='127.0.0.1',
-                                                  database='*****')
+                    base = mysql.connector.connect(user=config["my_sql"]["mysql_user_local"],
+                                                  password=config["my_sql"]["mysql_password_local"],
+                                                  host=config["my_sql"]["mysql_host_local"],
+                                                  database=config["my_sql"]["mysql_database_local"])
                     cur = base.cursor()
                     if base:
                         print("MySql localhost db connection established")
