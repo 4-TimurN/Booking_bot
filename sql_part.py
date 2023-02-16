@@ -28,7 +28,7 @@ def start_sql():
     con_type = 2  # 0 - SQLlite; 1 - MSSQL; 2 - MySql
     match con_type:
         case 0:
-            base = sql.connect("GFT.db")
+            base = sql.connect("****")
             cur = base.cursor()
 
             if base:
@@ -46,8 +46,7 @@ def start_sql():
 
         # case 1:
 
-            # base = pyodbc.connect(r'Driver={SQL Server};Server=YOLO-LAPTOP\SQLEXPRESS;'
-            #                       r'Database=GFT;Trusted_Connection=yes;')
+            # base = pyodbc.connect(r'*********************************')
             # cur = base.cursor()
             #
             # if base:
@@ -67,17 +66,17 @@ def start_sql():
             host = "+"  # "-" - localhost; "+" - Heroku host
             match host:
                 case "+":
-                    base = mysql.connector.connect(user='bb5ac670ca9328', password='8a2bd31a',
-                                                   host='eu-cdbr-west-02.cleardb.net',
-                                                   database='heroku_e9eb697a6f5560a')
+                    base = mysql.connector.connect(user='*********', password='***********',
+                                                   host='***********************',
+                                                   database='*****************')
                     cur = base.cursor()
                     if base:
                         print("MySql Heroku host db connection established")
 
                 case "-":
-                    base = mysql.connector.connect(user='root', password='1234',
+                    base = mysql.connector.connect(user='root', password='*****',
                                                   host='127.0.0.1',
-                                                  database='gft')
+                                                  database='*****')
                     cur = base.cursor()
                     if base:
                         print("MySql localhost db connection established")
