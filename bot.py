@@ -15,9 +15,8 @@ async def on_startup(_):
     """
     Действия при запуске
     """
-    print("Bot is online")
-    sql_part.start_sql()
-
+    sql_part.sql_start()
+    print("DB is ready")
 
 """ Инициализация бота """
 
