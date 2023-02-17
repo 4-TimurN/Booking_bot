@@ -444,8 +444,8 @@ def sql_get_book_archive_status(id_travel):
         with connection as con:
             cursor = con.cursor()
             cursor.execute(query, (id_travel,))
-            for list in cursor.fetchall():
-                for i in list:
+            for lst in cursor.fetchall():
+                for i in lst:
                     return i
     except Exception:
         raise
