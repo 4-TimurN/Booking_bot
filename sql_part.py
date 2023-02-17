@@ -1,26 +1,8 @@
-import sqlite3 as sql
 import mysql.connector
 from configparser import ConfigParser
 
 config = ConfigParser()
 config.read("config.ini")
-
-
-# def replace_symbol(query):
-#     """
-#     Замена символа "?" на "%s", чтобы запросы были универсальные для всех СУБД
-#     """
-#     if con_type == 2:
-#         query = query.replace("?", "%s")
-#     return query
-#
-#
-# def check_connection():
-#     """
-#     Переподключиться к БД в случае потери соединения
-#     """
-#     if not base.is_connected():
-#         base.reconnect()
 
 
 def sql_connection():
@@ -84,7 +66,7 @@ async def sql_add_travel(state):
                                 'open', 'yes'))
                 con.commit()
         except Exception:
-            raise
+            return "Error db"
 
 
 async def sql_delete_travel(id):
@@ -197,8 +179,8 @@ async def sql_book(state):
             with connection as con:
                 cursor = con.cursor()
                 cursor.execute(query, (data['id_travel'], data['tg_user_id'],
-                                                    data['client_amount'], data['client_name'], data['phone'], '❌',
-                                                    data['tg_user_name']))
+                                       data['client_amount'], data['client_name'], data['phone'], '❌',
+                                       data['tg_user_name']))
                 con.commit()
         except Exception:
             raise
@@ -245,7 +227,6 @@ async def sql_cancel_travel_client_by_admin(travel_id, id):
     Отмена бронирования (client)
     """
     query = "DELETE FROM client_travel WHERE travel_id = %s and id = %s"
-    # cur.execute("DELETE FROM client_travel WHERE tg_name = %s and id_travel = %s", (tg_name, id_travel))
     try:
         connection = sql_connection()
         with connection as con:
@@ -261,7 +242,6 @@ async def sql_cancel_travel_client_by_client(travel_id, tg_user_id):
     Отмена бронирования (client)
     """
     query = "DELETE FROM client_travel WHERE travel_id = %s and tg_user_id = %s"
-    # cur.execute("DELETE FROM client_travel WHERE tg_name = %s and id_travel = %s", (tg_name, id_travel))
     try:
         connection = sql_connection()
         with connection as con:
