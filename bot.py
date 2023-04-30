@@ -2,8 +2,7 @@ import time
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher, FSMContext, filters
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, \
-    InlineKeyboardMarkup
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import bot_token
 from aiogram.utils import executor

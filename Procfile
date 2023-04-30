@@ -1,1 +1,1 @@
-worker: python bot.py railway connect MySQL
+worker: python bot.py
