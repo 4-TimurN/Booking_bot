@@ -11,7 +11,7 @@ import sql_part
 import datetime
 
 
-async def on_startup():
+async def on_startup(_):
     """
     Действия при запуске
     """
