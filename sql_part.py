@@ -13,10 +13,12 @@ def sql_connection():
     connection = None
     match host:
         case "+":
-            connection = mysql.connector.connect(user=config["my_sql"]["mysql_user"],
-                                                 password=config["my_sql"]["mysql_password"],
-                                                 host=config["my_sql"]["mysql_host"],
-                                                 database=config["my_sql"]["mysql_database_heroku"])
+            connection = mysql.connector.connect(MYSQL_URL="mysql://root:ufSOrR0BXGHrjO9V5OqV@containers-us-west-25.railway.app:5442/railway",
+                                                 MYSQLDATABASE="railway",
+                                                 MYSQLHOST="containers-us-west-25.railway.app",
+                                                 MYSQLPASSWORD="ufSOrR0BXGHrjO9V5OqV",
+                                                 MYSQLPORT="5442",
+                                                 MYSQLUSER="root")
 
         case "-":
             connection = mysql.connector.connect(user=config["my_sql"]["mysql_user_local"],
