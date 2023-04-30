@@ -13,7 +13,7 @@ def sql_connection():
     connection = None
     match host:
         case "+":
-            connection = mysql.connector.connect(MYSQL_URL="mysql://root:ufSOrR0BXGHrjO9V5OqV@containers-us-west-25.railway.app:5442/railway",
+            connection = mysql.connector.connect(
                                                  MYSQLDATABASE="railway",
                                                  MYSQLHOST="containers-us-west-25.railway.app",
                                                  MYSQLPASSWORD="ufSOrR0BXGHrjO9V5OqV",
