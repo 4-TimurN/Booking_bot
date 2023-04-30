@@ -9,7 +9,7 @@ def sql_connection():
     """
     Подключение к БД
     """
-    host = "-"  # "-" - localhost; "+" - Heroku host
+    host = "+"  # "-" - localhost; "+" - Heroku host
     connection = None
     match host:
         case "+":

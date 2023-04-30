@@ -11,7 +11,7 @@ import sql_part
 import datetime
 
 
-async def on_startup(_):
+async def on_startup():
     """
     Действия при запуске
     """
@@ -517,7 +517,7 @@ async def cancel_command(message: types.Message, state: FSMContext):
         last_msg = await message.answer("Нет активных команд. Я ничего и не делал ))")
         time.sleep(1.5)
         await clear_chat_2(last_msg, 25)
-        if message.from_user.id == bot_token.ADMIN_ID or message.from_user.id == bot_token.MARAT:
+        if message.from_user.id == bot_token.ADMIN_ID:
             await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=admin_buttons)
         else:
             await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=client_buttons)
@@ -526,7 +526,7 @@ async def cancel_command(message: types.Message, state: FSMContext):
         last_msg = await message.answer("Команда отменена 👌")
         time.sleep(1.5)
         await clear_chat_2(last_msg, 25)
-        if message.from_user.id == bot_token.ADMIN_ID or message.from_user.id == bot_token.MARAT:
+        if message.from_user.id == bot_token.ADMIN_ID:
             await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=admin_buttons)
         else:
             await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=client_buttons)
@@ -573,7 +573,7 @@ async def help_command(message: types.Message):
 @dp.message_handler(commands="menu")
 async def menu_command(message: types.Message):
     await clear_chat_2(message, 25)
-    if message.from_user.id == bot_token.ADMIN_ID or message.from_user.id == bot_token.MARAT:
+    if message.from_user.id == bot_token.ADMIN_ID:
         await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=admin_buttons)
     else:
         await message.answer('🟢 Что будем делать? Выбери ниже ⬇', reply_markup=client_buttons)
@@ -1359,7 +1359,7 @@ async def book_me_command_call(callback: types.CallbackQuery, state: FSMContext)
         tg_user_id = callback.from_user.id
         async with state.proxy() as data:
             data["tg_user_id"] = tg_user_id
-            print(data["tg_user_id"])
+            # print(data["tg_user_id"])
         await FSMClient.travel_name.set()
         travel_name = call[2]
         async with state.proxy() as data:
