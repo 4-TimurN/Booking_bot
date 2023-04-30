@@ -1,8 +1,10 @@
-import mysql.connector
-from configparser import ConfigParser
+import os
 
-config = ConfigParser()
-config.read("config.ini")
+import mysql.connector
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 def sql_connection():
@@ -14,17 +16,17 @@ def sql_connection():
     match host:
         case "+":
             connection = mysql.connector.connect(
-                                                 database="railway",
-                                                 host="containers-us-west-25.railway.app",
-                                                 password="ufSOrR0BXGHrjO9V5OqV",
-                                                 port="5442",
-                                                 user="root")
+                                                 database=os.getenv("mysql_database_remote"),
+                                                 host=os.getenv("mysql_host_remote"),
+                                                 password=os.getenv("mysql_password_remote"),
+                                                 port=os.getenv("mysql_port_remote"),
+                                                 user=os.getenv("mysql_user_remote"))
 
         case "-":
-            connection = mysql.connector.connect(user=config["my_sql"]["mysql_user_local"],
-                                                 password=config["my_sql"]["mysql_password_local"],
-                                                 host=config["my_sql"]["mysql_host_local"],
-                                                 database=config["my_sql"]["mysql_database_local"])
+            connection = mysql.connector.connect(user=os.getenv("password"),
+                                                 password=os.getenv("password"),
+                                                 host=os.getenv("password"),
+                                                 database=os.getenv("password"))
 
     return connection
 
