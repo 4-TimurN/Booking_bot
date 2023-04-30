@@ -14,11 +14,11 @@ def sql_connection():
     match host:
         case "+":
             connection = mysql.connector.connect(
-                                                 MYSQLDATABASE="railway",
-                                                 MYSQLHOST="containers-us-west-25.railway.app",
-                                                 MYSQLPASSWORD="ufSOrR0BXGHrjO9V5OqV",
-                                                 MYSQLPORT="5442",
-                                                 MYSQLUSER="root")
+                                                 database="railway",
+                                                 host="containers-us-west-25.railway.app",
+                                                 password="ufSOrR0BXGHrjO9V5OqV",
+                                                 port="5442",
+                                                 user="root")
 
         case "-":
             connection = mysql.connector.connect(user=config["my_sql"]["mysql_user_local"],
