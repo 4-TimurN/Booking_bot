@@ -23,10 +23,10 @@ def sql_connection():
                                                  user=os.getenv("mysql_user_remote"))
 
         case "-":
-            connection = mysql.connector.connect(user=os.getenv("password"),
-                                                 password=os.getenv("password"),
-                                                 host=os.getenv("password"),
-                                                 database=os.getenv("password"))
+            connection = mysql.connector.connect(user=os.getenv("mysql_user_local"),
+                                                 password=os.getenv("mysql_password_local"),
+                                                 host=os.getenv("mysql_host_local"),
+                                                 database=os.getenv("mysql_database_local"))
 
     return connection
 

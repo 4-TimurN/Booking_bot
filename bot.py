@@ -1071,7 +1071,7 @@ async def load_phone(message: types.Message, state: FSMContext):
                                                                callback_data=f"#14#"))  # back_to_travel_list_admin
                                      .add(InlineKeyboardButton("Удалить путешествие ❌",
                                                                callback_data=f"#15#&{string[0]}&{string[1]}&{string[2]}")))  # delete_travel_admin
-        await bot.send_message(bot_token.MSG_STOREGE, f"✅ @{message.from_user.username}\n{data['client_name']}"
+        await bot.send_message(bot_token.MSG_STORAGE, f"✅ @{message.from_user.username}\n{data['client_name']}"
                                            f"\n___________________________________________\n\n"
                                            f"🥳 Записался(лась) на путешествие:\n{data['travel_name']} от "
                                                       f"{data['travel_date']}")
@@ -1267,7 +1267,7 @@ async def client_cancel_book(callback, id_travel, travel_name, travel_date):
     await sql_part.sql_cancel_travel_client_by_client(id_travel, tg_user_id)
     await callback.answer(text=f"😢 Бронирование:\n{travel_name} от {travel_date} отменено")
     await clear_chat_2(callback.message, 10)
-    await bot.send_message(bot_token.MSG_STOREGE, f"❌ @{callback.from_user.username}\n{client_name}"
+    await bot.send_message(bot_token.MSG_STORAGE, f"❌ @{callback.from_user.username}\n{client_name}"
                                                   f"\n___________________________________________\n\n"
                                                   f"😕 Отменил(а) запись на путешествие:\n{travel_name} oт {travel_date}")
     if len(sql_part.sql_show_me_my_book_client(callback.from_user.id)) == 0:
@@ -1444,7 +1444,7 @@ async def load_phone(message: types.Message, state: FSMContext):
                               "'Мои бронирования' в меню.\n\nДо связи!")
         time.sleep(2)
         await bot.send_message(message.chat.id, '🟢 Что будем делать? Выбери ниже ⬇', reply_markup=client_buttons)
-        await bot.send_message(bot_token.MSG_STOREGE, f"✅ @{message.from_user.username}\n{data['client_name']}"
+        await bot.send_message(bot_token.MSG_STORAGE, f"✅ @{message.from_user.username}\n{data['client_name']}"
                                                       f"\n___________________________________________\n\n"
                                                       f"🥳 Записался(лась) на путешествие:\n{data['travel_name']} от "
                                                       f"{data['travel_date']}")
@@ -1546,7 +1546,7 @@ async def cancel_travel_call(callback: types.CallbackQuery):
     else:
         tg_user_id = callback.from_user.id
         client_name = sql_part.sql_get_client_name(call[1], tg_user_id)
-        await bot.send_message(bot_token.MSG_STOREGE, f"💸 @{callback.from_user.username}\n{client_name}"
+        await bot.send_message(bot_token.MSG_STORAGE, f"💸 @{callback.from_user.username}\n{client_name}"
                                                    f"\n___________________________________________\n\n"
                                                    f"Подтвердил(а) оплату за путешествие:\n{call[2]} oт {call[3]}👌"
                                                    f"\n\nПроверь поступление 🔎")
@@ -1585,7 +1585,7 @@ async def load_review(messsage: types.Message, state: FSMContext):
         data["review"] = messsage.text
     tg_user_id = messsage.from_user.id
     client_name = sql_part.sql_get_client_name(data["id_travel"], tg_user_id)
-    await bot.send_message(bot_token.MSG_STOREGE,
+    await bot.send_message(bot_token.MSG_STORAGE,
                            f"✏ Отзыв от @{messsage.from_user.username}\n{client_name}\n "
                            f"\nПутешествие:\n{data['name']} от {data['date']}"
                            f"\n___________________________________________\n\n{data['review']}")

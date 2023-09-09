@@ -1,6 +1,8 @@
-BOT_TOKEN = "2141584324:AAG4KufbfprpupaHobq1kj_t15s9Ju-1b4Y"
-ADMIN_ID = 506077396
-MSG_STOREGE = 506077396
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = os.getenv("ADMIN_ID")
+MSG_STORAGE = os.getenv("MSG_STORAGE")
 
 
 
