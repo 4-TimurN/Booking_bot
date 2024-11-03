@@ -1,3 +1,4 @@
+import logging
 import time
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher, FSMContext, filters
@@ -9,6 +10,8 @@ from aiogram.utils import executor
 import sql_part
 import datetime
 
+
+logging.basicConfig(level=logging.INFO)
 
 async def on_startup(_):
     """
@@ -1668,5 +1671,9 @@ async def unknown_command(message: types.Message):
 
 """ Запуск бота """
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+    try:
+        executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+    except Exception as e:
+        logging.error(f"{e}")
+
 
